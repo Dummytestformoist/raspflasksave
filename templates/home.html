@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <!--Required meta tags-->
+    <meta charset="=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS File-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>Welcome to DDWaterSystems</title>
+
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <a class="navbar-brand mr-4" href="/">
+                <img src="{{url_for('static', filename='logo.png')}}" width="30" height="30"
+                    class="d-inline-block align-top" alt="Logo">
+                DripDropWaterSystems
+            </a>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <!--show flash messages-->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <div class="alert alert-light" role="alert">
+            <div id="LastUpdated">
+            </div>
+        </div>
+        <h5><u>Status</u></h5>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="Plant1Status">Plant 1: awaiting...</div>
+                </div>
+                <div class="col">
+                    <div id="Plant2Status">Plant 2: awaiting...</div>
+                </div>
+                <div class="col">
+                    <div id="Plant3Status">Plant 3: awaiting...</div>
+                </div>
+                <div class="col">
+                    <div id="Plant4Status">Plant 4: awaiting...</div>
+                </div>
+                <div class="col">
+                    <div id="TankStatus">Tank: awaiting...</div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Toggle Auto Watering</h5><br>
+                        <label class=" switch">
+                            <input type="checkbox" id='AW'>
+                            <span class="slider"></span>
+                        </label>
+                </div>
+                <div class="col-md-4 ml-auto">
+                    <h5>Manually Water</h5><br>
+                        <label class="switch">
+                            <input type="checkbox" id='MW'>
+                            <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+	<script src="{{ url_for('static', filename='app9.js') }}"></script>
+    <!-- jQuery first, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
